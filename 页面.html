@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="vue3.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="xinxi">获取信息</button>
+        <p>{{ message }}</p>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    message: '点击按钮获取信息'
+                }
+            },
+            methods: {
+                xinxi() {
+                    axios.post('http://127.0.0.1:3333/api')
+                    .then(res => {
+                        this.message = res.data
+                    })
+                    .catch(err => {
+                        this.message = "获取失败"
+                    })
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+</html>
